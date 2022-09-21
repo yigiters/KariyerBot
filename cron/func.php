@@ -34,6 +34,12 @@ function Bot($search_link, $search_name) {
 		$data_location = trim($location[1][$i]);
 		$data_link = trim($link[1][$i]);
 
+		$find = array('ç','Ç','ı','İ','ğ','Ğ','ü','ö','Ş','ş','Ö','Ü');
+		$replace = array('c','C','i','I','g','G','u','o','S','s','O','U');
+
+		$data_company = str_replace($find, $replace, $data_company);
+		$data_location = str_replace($find, $replace, $data_location);  
+
 		try {
 			$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
 			$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
